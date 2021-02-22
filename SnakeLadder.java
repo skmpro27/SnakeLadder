@@ -7,33 +7,47 @@ public class SnakeLadder {
 
 	public static void main(String args[]) {
 
-		int playerPosition = START_POSITION;
+		int playerPosition[] = new int[2];
 		int countDice = 0;
-		while (playerPosition != WINNING_POSITION)
+		int turn = 0;
+		while (playerPosition[0] != WINNING_POSITION && playerPosition[1] != WINNING_POSITION)
 		{
-			int diceValue = (int) (Math.random() * 6) + 1;
+			int diceValue = (int) (Math.random() * 6) + 1;  //dice roll
 			countDice++;
-			int check = (int) (Math.random() * 3);
+			int check = (int) (Math.random() * 3);  //snake or ladder or no play
 			switch (check)
 			{
 
 				case SNAKE:
-					playerPosition -= diceValue;
+					playerPosition[turn] -= diceValue;
+					System.out.println("Snake");
 					break;
 
 				case LADDER:
-					playerPosition += diceValue;
+					playerPosition[turn] += diceValue;
+					System.out.println("Ladder");
 					break;
 
 				default:
+					System.out.println("No Play");
 			}
-			if (playerPosition < START_POSITION)
-				playerPosition = START_POSITION;
-			if (playerPosition > WINNING_POSITION)
-				playerPosition -= diceValue;
+			if (playerPosition[turn] < START_POSITION)      //position less than 0
+				playerPosition[turn] = START_POSITION;
+			if (playerPosition[turn] > WINNING_POSITION)    //position more than 100
+				playerPosition[turn] -= diceValue;
 
-			System.out.println("Position of player: " + playerPosition);
+			System.out.println("Position of player" + (turn + 1) + ": " + playerPosition[turn]);
+			System.out.println();
+
+			if (check == LADDER);  //to change turn
+				//turn = turn;
+			else if (turn == 0)
+				turn = 1;
+			else
+				turn = 0;
 		}
-		System.out.println("Number of time dice rolled: " + countDice);
+
+		System.out.println("Player" + (turn + 1) + " Wins");			//winner
+		System.out.println("Number of time dice rolled: " + countDice);		//number time dice roll
 	}
 }
