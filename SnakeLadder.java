@@ -13,7 +13,6 @@ public class SnakeLadder {
 		{
 			int diceValue = (int) (Math.random() * 6) + 1;
 			int check = (int) (Math.random() * 3);
-
 			switch (check)
 			{
 
@@ -27,8 +26,10 @@ public class SnakeLadder {
 
 				default:
 			}
-			if (playerPosition < 0)
+			if (playerPosition < START_POSITION)
 				playerPosition = START_POSITION;
+			if (playerPosition > WINNING_POSITION)
+				playerPosition -= diceValue;
 
 			System.out.println("Position of player: " + playerPosition);
 		}
