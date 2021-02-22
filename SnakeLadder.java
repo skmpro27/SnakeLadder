@@ -8,10 +8,11 @@ public class SnakeLadder {
 	public static void main(String args[]) {
 
 		int playerPosition = START_POSITION;
-
+		int countDice = 0;
 		while (playerPosition != WINNING_POSITION)
 		{
 			int diceValue = (int) (Math.random() * 6) + 1;
+			countDice++;
 			int check = (int) (Math.random() * 3);
 			switch (check)
 			{
@@ -33,5 +34,6 @@ public class SnakeLadder {
 
 			System.out.println("Position of player: " + playerPosition);
 		}
+		System.out.println("Number of time dice rolled: " + countDice);
 	}
 }
